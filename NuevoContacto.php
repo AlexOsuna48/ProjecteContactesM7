@@ -1,27 +1,33 @@
 <?php
+session_start();
+
 include 'login-usuarios/conexion.php';
 include 'Menu/header.php';
 include 'Menu/menu.php';
-include 'CSS/estilo-NuevoContacto.css'
-?>
+include 'CSS/estilo-NuevoContacto.css';
 
-<?php
-if (!$conn) {
-    die("Error al conectar a la base de datos: " . mysqli_connect_error());
-}
-
-if (isset($_POST['nombre']) && isset($_POST['numero']) && isset($_POST['email']) && isset($_POST['direccion']) && isset($_POST['opciones'])) {
+if (isset($_POST['nombre']) && isset($_POST['numero']) && isset($_POST['email']) && isset($_POST['direccion'])) {
     $nombre = $_POST['nombre'];
     $numero = $_POST['numero'];
     $email = $_POST['email'];
     $direccion = $_POST['direccion'];
-    $grupo = $_POST['opciones'];
     $favorito = isset($_POST['favorito']) && $_POST['favorito'] == 'Si' ? 1 : 0;
 
-    $sql = "INSERT INTO contactos(nombre, numero, email, direccion, favorito, id_grupo) VALUES('$nombre', '$numero', '$email', '$direccion', '$favorito', '$grupo')";
+    $id_usuario = $_SESSION['id_usuario'];
+
+    $sql = "INSERT INTO contactos(nombre, numero, email, direccion, favorito, id_usuario) VALUES('$nombre', '$numero', '$email', '$direccion', '$favorito', '$id_usuario')";
 
     if (mysqli_query($conn, $sql)) {
         echo "Los datos se han insertado correctamente";
+        $id_contacto = mysqli_insert_id($conn); //Obtener el ID del contacto insertado
+
+        // Insertar las relaciones entre el contacto y los grupos
+        if (isset($_POST['grupo'])) {
+            foreach ($_POST['grupo'] as $id_grupo) {
+                $sql = "INSERT INTO contactos_grupos(id_contacto, id_grupo) VALUES('$id_contacto', '$id_grupo')";
+                mysqli_query($conn, $sql);
+            }
+        }
     } else {
         echo "Error al insertar los datos: " . mysqli_error($conn);
     }
@@ -58,21 +64,18 @@ if (isset($_POST['nombre']) && isset($_POST['numero']) && isset($_POST['email'])
             <input type="radio" name="favorito" value="No"/> No
             <p></p>
 
-         <label for="opciones">Elegir grupo
-    <select id="opciones" name="opciones">
-        <option value="">--</option>
-        <?php
-        $sql = "SELECT id_grupo, nombre FROM grupos";
-        $resultado = mysqli_query($conn, $sql);
-        while ($row = mysqli_fetch_assoc($resultado)) {
-            echo "<option value=\"" . $row['id_grupo'] . "\">" . $row['nombre'] . "</option>";
-        }
-        ?>
-    </select>
-</label>
+            <label for="grupo">Grupo:</label>
+            <select name="grupo[]" multiple>
+                <?php
+                $query_grupos = "SELECT * FROM grupos";
+                $resultado_grupos = mysqli_query($conn, $query_grupos);
+                while ($grupo = mysqli_fetch_array($resultado_grupos)) {
+                    echo "<option value=\"" . $grupo['id_grupo'] . "\">" . $grupo['nombre'] . "</option>";
+                }
+                ?>
+            </select>
 
             <button type="submit" class="btn btn-primary">Agregar Contacto</button>
         </form>
-
-
     </div>
+</div>

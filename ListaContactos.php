@@ -1,61 +1,70 @@
 <?php
-
+session_start();
 include 'Menu/header.php';
 include 'Menu/menu.php';
+include 'login-usuarios/conexion.php';
 
-$host = "localhost";
-$user = "root";
-$password = "";
-$dbname = "M7ListaContactos";
-
-// Crea la conexión
-$conn = mysqli_connect($host, $user, $password, $dbname);
-
-// Verifica la conexión
-if (!$conn) {
-    die("Conexión fallida: " . mysqli_connect_error());
+// Comprobamos si el usuario ha iniciado sesión
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location: login.php');
+    exit();
 }
 
-$id_contacto = mysqli_insert_id($conn);
+// Para obtener el id_usuario del usuario que esta conectado 
+$id_usuario = $_SESSION['id_usuario'];
 
-$sql = "select nombre,numero,email,direccion,favorito,id_usuario,id_grupo from contactos";
+// En esta consulta lo que queremos hacer es que muestre el nombre, numero, email, direccion, favorito 
+// y el grupo pero que en el grupo se muestre en la misma fila que el contacto y no en una nueva  
+$sql = "SELECT c.id_contacto, c.nombre, c.numero, c.email, c.direccion, c.favorito, 
+        (SELECT GROUP_CONCAT(g.nombre SEPARATOR ', ') 
+         FROM contactos_grupos cg 
+         JOIN grupos g ON cg.id_grupo = g.id_grupo 
+         WHERE cg.id_contacto = c.id_contacto) AS grupos 
+        FROM contactos c 
+        WHERE c.id_usuario = $id_usuario 
+        ORDER BY c.id_contacto";
+
 $resultado = mysqli_query($conn, $sql);
+
+// Comprovamos si hay algun error entre la base de datos y la consulta
+if (!$resultado) {
+    // Si hay un error, muestra el mensaje de error de MySQL
+    echo "Error: " . mysqli_error($conn);
+} 
 ?>
 
 <div class="container">
     <br>
-    <a href="NuevoContacto.php">Nou</a>
+    <a href="NuevoContacto.php">Nuevo</a>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">nombre </th>                
-                <th scope="col">numero </th>  
-                <th scope="col">email </th>  
-                <th scope="col">dirección </th>  
-                <th scope="col">favorito </th> 
-                <th scope="col">grupo </th> 
-                <th scope="col">usuario </th> 
-                
-
+                <th scope="col">Nombre </th>                
+                <th scope="col">Número </th>  
+                <th scope="col">Email </th>  
+                <th scope="col">Dirección </th>  
+                <th scope="col">Favorito </th> 
+                <th scope="col">Grupo </th> 
             </tr>
         </thead>
         <tbody>
 
             <?php
-            
-            
-            while($contacto = mysqli_fetch_array($resultado)){
-                echo "<tr>";
-                echo "<td>" . $contacto['nombre'] . "</td>";
-                echo "<td>" . $contacto['numero'] . "</td>";
-                echo "<td>" . $contacto['email'] . "</td>";
-                echo "<td>" . $contacto['direccion'] . "</td>";
-                echo "<td>" . $contacto['favorito'] . "</td>";
-                echo "<td>" . $contacto['id_grupo'] . "</td>";
-                echo "<td>" . $contacto['id_usuario'] . "</td>";
-                
-                echo "</tr>";
-            } 
+            // Si esta todo correcto muestra los contactos en formato tabla
+            if ($resultado) {
+                if (mysqli_num_rows($resultado) > 0) {
+                    while ($contacto = mysqli_fetch_assoc($resultado)) {
+                        echo "<tr>";
+                        echo "<td>" . $contacto["nombre"] . "</td>";
+                        echo "<td>" . $contacto["numero"] . "</td>";
+                        echo "<td>" . $contacto["email"] . "</td>";
+                        echo "<td>" . $contacto["direccion"] . "</td>";
+                        echo "<td>" . ($contacto["favorito"] == 1 ? "Si" : "No") . "</td>";
+                        echo "<td>" . $contacto["grupos"] . "</td>";
+                        echo "</tr>";
+                    }
+                }
+            }
             ?>
 
         </tbody>
