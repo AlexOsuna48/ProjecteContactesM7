@@ -22,10 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $direccion = $_POST['direccion'];
     $favorito = isset($_POST['favorito']) ? 1 : 0;
-    $id_grupo = $_POST['id_grupo'];
+   
 
     // Actualiza los datos del contacto en la base de datos
-    $sql = "UPDATE contactos SET nombre='$nombre', numero='$numero', email='$email', direccion='$direccion', favorito=$favorito, id_grupo=$id_grupo WHERE id_contacto=$id_contacto";
+    $sql = "UPDATE contactos SET nombre='$nombre', numero='$numero', email='$email', direccion='$direccion', favorito=$favorito WHERE id_contacto=$id_contacto";
     mysqli_query($conn, $sql);
 
     // Redirige de vuelta a la lista de contactos

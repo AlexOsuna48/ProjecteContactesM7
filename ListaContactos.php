@@ -30,7 +30,7 @@ $resultado = mysqli_query($conn, $sql);
 if (!$resultado) {
     // Si hay un error, muestra el mensaje de error de MySQL
     echo "Error: " . mysqli_error($conn);
-} 
+}
 ?>
 
 <div class="container">
@@ -44,7 +44,10 @@ if (!$resultado) {
                 <th scope="col">Email </th>  
                 <th scope="col">Dirección </th>  
                 <th scope="col">Favorito </th> 
-                <th scope="col">Grupo </th> 
+                <th scope="col">Grupo </th>
+                <th scope="col">Elimiar </th>
+                <th scope="col">Editar </th>
+
             </tr>
         </thead>
         <tbody>
@@ -61,6 +64,8 @@ if (!$resultado) {
                         echo "<td>" . $contacto["direccion"] . "</td>";
                         echo "<td>" . ($contacto["favorito"] == 1 ? "Si" : "No") . "</td>";
                         echo "<td>" . $contacto["grupos"] . "</td>";
+                        echo "<td><a href= 'delete.php?id_contacto=" . $contacto['id_contacto'] . "'> Eliminar </a></td>";
+                        echo "<td><a href='editar.php?id_contacto=" . $contacto['id_contacto'] . "'>Editar</a></td>";
                         echo "</tr>";
                     }
                 }
