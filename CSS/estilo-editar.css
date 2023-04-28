@@ -1,0 +1,57 @@
+<style>
+   
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 100px;
+  margin-top: 100px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contenido {
+  margin-bottom: 20px;
+}
+
+.container h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.container input[type="text"],
+.container input[type="email"],
+.container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.container input[type="checkbox"] {
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+.container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container .btn:hover {
+  background-color: #3e8e41;
+}
+</style>
+

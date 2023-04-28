@@ -1,41 +1,14 @@
-
-<style>
-    nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        background-color: #f2f2f2;
-    }
-
-    nav li {
-        display: inline-block;
-        margin-right: 10px;
-    }
-
-    nav a {
-        display: block;
-        padding: 10px;
-        color: #333;
-        text-decoration: none;
-    }
-
-    nav a:hover {
-        background-color: #333;
-        color: #fff;
-    }
-
-</style>
+<?php
+include 'CSS/estilo-menu.css';
+?>
 <header>
-    <nav>
-        <ul>
-            <li><a class="nav-link" href="ListaContactos.php">Contactos</a></li>
-            <li><a class="nav-link" href="favorito.php">Favoritos</a></li>
-            <li><a class="nav-link" href="login-usuarios/logout.php">Cerrar Sesión</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <ul class="menu">
+      <li><a href="ListaContactos.php">Contactos</a></li>
+      <li><a href="favorito.php">Favoritos</a></li>
+      <li class="cerrar-sesion"><a href="login-usuarios/logout.php">Cerrar sesión</a></li>
+    </ul>
+  </nav>
 </header>
-
-
-
 
 

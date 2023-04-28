@@ -11,7 +11,7 @@ if (isset($_GET['id_contacto'])) {
         // Si se eliminaron los registros de la tabla "contactos_grupos", se procede a eliminar el registro de la tabla "contactos"
         $sql_c = "DELETE FROM contactos WHERE id_contacto = $id_contacto";
         if (mysqli_query($conn, $sql_c)) {
-            echo "Contacto eliminado correctamente";
+            header('Location: ListaContactos.php');
         } else {
             echo "Error al eliminar el contacto: " . mysqli_error($conn);
         }
