@@ -1,5 +1,5 @@
 <?php
-include 'login-usuarios/conexion.php';
+include '../login-usuarios/conexion.php';
 
 // Verifica si se recibió el parámetro id_contacto
 if (isset($_GET['id_contacto'])) {

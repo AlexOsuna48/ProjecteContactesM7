@@ -1,9 +1,9 @@
 <?php
 session_start();
-include 'Menu/header.php';
-include 'Menu/menu.php';
-include 'CSS/estilo-editar.css';
-include 'login-usuarios/conexion.php';
+include '../Menu/header.php';
+include '../Menu/menu.php';
+include '../CSS/estilo-editar.css';
+include '../login-usuarios/conexion.php';
 
 // Obtiene el id del contacto que se va a editar
 $id_contacto = $_GET['id_contacto'];
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <br>
 
 <div class="container">
-    <h2>Editar contacto</h2>
+    <strong><h2>Editar contacto</h2></strong>
     <form method="POST">
         <div class="form-group">
             <label for="nombre">Nombre</label>
@@ -85,17 +85,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" name="favorito" <?php
-if ($contacto['favorito'] == 1) {
-    echo 'checked';
-}
-?>>
+            if ($contacto['favorito'] == 1) {
+                echo 'checked';
+            }
+            ?>>
             <label class="form-check-label" for="favorito">Favorito</label>
         </div>
         <div class="form-group">
             <label for="id_grupo">Grupo</label>
             <select name="grupo[]" multiple>
                 <?php
-                
                 //Muestra todos los grupos
                 $query_grupos = "SELECT * FROM grupos";
                 $resultado_grupos = mysqli_query($conn, $query_grupos);
@@ -105,6 +104,19 @@ if ($contacto['favorito'] == 1) {
                 ?>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+
+        <button type="submit" class="btn btn-primary" id="btn-guardar">Guardar cambios</button>
+
+        <script>// Sirve para cuando le des al boton de guardar cambios salga una alerta con el mensaje de que se ha editado
+
+            const btnGuardar = document.getElementById('btn-guardar');
+
+
+            btnGuardar.addEventListener('click', () => {// Es el encargado de cuando le des clic al botón funcione
+
+                alert('El contacto ha sido editado'); // Esto es lo que Muestra la alerta
+            });
+        </script>
     </form>
 </div>

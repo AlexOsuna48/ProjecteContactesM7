@@ -1,4 +1,3 @@
-
 <style>
 html,
 body {
@@ -12,12 +11,6 @@ body {
     font-weight: 100;
 }
 
-.container {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
 table {
     width: 800px;
@@ -38,9 +31,12 @@ th {
 }
 
 thead {
-    th {
-        background-color: #55608f;
-    }
+
+    background-color: #55608f;
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Para asegurar que la cabecera esté encima del contenido que se desplaza */
+
 }
 
 tbody {
@@ -66,15 +62,32 @@ tbody {
     }
 }
 .boton {
-    border: 1px solid #2e518b; 
-    padding: 10px; 
-    background-color: #2e518b; 
-    color: #ffffff; 
-    text-decoration: none; 
-    text-transform: uppercase; 
+    border: 1px solid #2e518b;
+    padding: 10px;
+    background-color: #2e518b;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
     font-family: 'Helvetica', sans-serif;
-    border-radius: 50px; 
+    border-radius: 50px;
+    margin-left: 25%;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+.centrada {
+    display: block;
+    margin: 0 auto;
+}
+.container-scroll {
+    height: 700px; /* Altura deseada del contenedor */
+    overflow-y: auto; /* Habilita el scroll vertical */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 </style>
-
-

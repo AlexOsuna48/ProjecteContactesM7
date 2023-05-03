@@ -3,9 +3,9 @@
 
         <?php
         session_start();
-        include 'login-usuarios/conexion.php';
-        include 'CSS/estilo-favorito.css';
-        include 'Menu/menu.php';
+        include '../login-usuarios/conexion.php';
+        include '../CSS/estilo-favorito.css';
+        include '../Menu/menu.php';
 // comprobar si el usuario ha iniciado sesión
 // obtener el id_usuario del usuario actualmente conectado
         $id_usuario = $_SESSION['id_usuario'];
