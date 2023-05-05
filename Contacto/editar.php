@@ -95,10 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="id_grupo">Grupo</label>
             <select name="grupo[]" multiple>
                 <?php
-                //Muestra todos los grupos
+                //Selecciona todos los datos de la tabla grupos 
                 $query_grupos = "SELECT * FROM grupos";
+                //Se guarda los datos anteriores en la variable $resultado_grupos
                 $resultado_grupos = mysqli_query($conn, $query_grupos);
+                //Lee cada registro de $resulta_grupos
                 while ($grupo = mysqli_fetch_array($resultado_grupos)) {
+                    //Imprime los valores seleccionados y cada opcion tiene id_grupo y nombre 
                     echo "<option value=\"" . $grupo['id_grupo'] . "\">" . $grupo['nombre'] . "</option>";
                 }
                 ?>

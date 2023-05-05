@@ -5,29 +5,39 @@
     include '../login-usuarios/conexion.php';
     include '../Menu/menu.php';
     include '../CSS/estilo-NuevoContacto.css';
-
+    
+    //Comprueba si se han enviado los datos y si existen estos campos se enviara los datos introducidos
     if (isset($_POST['nombre']) && isset($_POST['numero']) && isset($_POST['email']) && isset($_POST['direccion'])) {
+        
+        //Son variables para los campos del formulario para insertar los datos
         $nombre = $_POST['nombre'];
         $numero = $_POST['numero'];
         $email = $_POST['email'];
         $direccion = $_POST['direccion'];
         $favorito = isset($_POST['favorito']) && $_POST['favorito'] == 'Si' ? 1 : 0;
 
+        // Obtiene el id_usuario del usuario que esta conectado
         $id_usuario = $_SESSION['id_usuario'];
 
+        //Inserta en la tabla Contactos los valores que hemos introducido en el formulario
         $sql = "INSERT INTO contactos(nombre, numero, email, direccion, favorito, id_usuario) VALUES('$nombre', '$numero', '$email', '$direccion', '$favorito', '$id_usuario')";
 
         if (mysqli_query($conn, $sql)) {
+            
+            //Crea el ID del nuevo contacto 
             $id_contacto = mysqli_insert_id($conn);
-            // Insertar las relaciones entre el contacto y los grupos
+            
+            // Para que pueda seleccionar varios grupos 
             if (isset($_POST['grupo'])) {
+                //Mira la id del grupo seleccionado para luego inserte en la tabla Contactos_Grupos
                 foreach ($_POST['grupo'] as $id_grupo) {
                     $sql = "INSERT INTO contactos_grupos(id_contacto, id_grupo) VALUES('$id_contacto', '$id_grupo')";
                     mysqli_query($conn, $sql);
                 }
             }
-            echo "<script>alert('Los datos se han insertado correctamente.')</script>";
             
+            //Mensaje si ha introducido los datos correctamente 
+            echo "<script>alert('Los datos se han insertado correctamente.')</script>";
         } else {
             echo "Error al insertar los datos: " . mysqli_error($conn);
         }
@@ -68,9 +78,14 @@
                 <label for="grupo">Grupo:</label>
                 <select name="grupo[]" multiple >
                     <?php
+                    
+                    //Selecciona todos los datos de la tabla grupos 
                     $query_grupos = "SELECT * FROM grupos";
+                    //Se guarda los datos anteriores en la variable $resultado_grupos
                     $resultado_grupos = mysqli_query($conn, $query_grupos);
+                    //Lee cada registro de $resulta_grupos
                     while ($grupo = mysqli_fetch_array($resultado_grupos)) {
+                        //Imprime los valores seleccionados y cada opcion tiene id_grupo y nombre 
                         echo "<option value=\"" . $grupo['id_grupo'] . "\">" . $grupo['nombre'] . "</option>";
                     }
                     ?>
