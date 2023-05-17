@@ -1,0 +1,96 @@
+<style>
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+	text-align: center; /* Añadido para centrar el texto */
+}
+
+th {
+	text-align: center;
+}
+
+thead {
+	background-color: #55608f;
+	position: sticky;
+	top: 0;
+	z-index: 1; /* Para asegurar que la cabecera esté encima del contenido que se desplaza */
+}
+
+tbody {
+	tr {
+    	&:hover {
+        	background-color: rgba(255,255,255,0.3);
+    	}
+	}
+	td {
+    	position: relative;
+    	&:hover {
+        	&:before {
+            	content: "";
+            	position: absolute;
+            	left: 0;
+            	right: 0;
+            	top: -9999px;
+            	bottom: -9999px;
+            	background-color: rgba(255,255,255,0.2);
+            	z-index: -1;
+        	}
+    	}
+	}
+}
+
+.boton {
+	border: 1px solid #2e518b;
+	padding: 10px;
+	background-color: #2e518b;
+	color: #ffffff;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: 'Helvetica', sans-serif;
+	border-radius: 50px;
+	margin-left: 28%;
+}
+
+img {
+	width: 40px;
+	height: 40px;
+	text-align: center;
+}
+
+.centrada {
+	display: block;
+	margin: 0 auto;
+}
+
+.container-scroll {
+	height: 700px; /* Altura deseada del contenedor */
+	overflow-y: auto; /* Habilita el scroll vertical */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+</style>
+

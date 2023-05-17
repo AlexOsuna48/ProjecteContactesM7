@@ -54,8 +54,18 @@ include '../CSS/estilo-login.css';
                             <input type="submit" value="Entrar" name="enviar" class="btn float-right login_btn">
                         </div>
                     </form>
+                    <form method="GET" action="registro1.php">
+                        <div class="form-group">
+                            <input type="submit" value="Registrarse" class="btn float-left register_btn">
+                        </div>
+                    </form>
+                    <form method="GET" action="seleccion_usuarios.php">
+                        <div class="form-group">
+                            <input type="submit" value="Eliminar" class="btn float-right usuarios_btn">
+                        </div>
+                    </form>
                 </div>
-
+                
             </div>
         </div>
     </div>

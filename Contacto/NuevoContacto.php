@@ -50,22 +50,22 @@
             <form action="NuevoContacto.php" method="post">
                 <div class="nombre">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre">
+                    <input type="text" name="nombre" id="nombre" required="requiered">
                 </div>
 
                 <div class="numero">
                     <label for="numero">Numero</label>
-                    <input type="text" name="numero" id="numero">
+                    <input type="text" name="numero" id="numero" required="requiered">
                 </div>
 
                 <div class="numero">
                     <label for="direccion">Email</label>
-                    <input type="text" name="email" id="email">
+                    <input type="text" name="email" id="email" required="requiered">
                 </div>
 
                 <div class="numero">
                     <label for="email">Dirección</label>
-                    <input type="text" name="direccion" id="direccion">
+                    <input type="text" name="direccion" id="direccion" required="requiered">
                 </div>
 
                 <p></p>

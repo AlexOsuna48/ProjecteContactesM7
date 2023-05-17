@@ -4,16 +4,28 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/login-usuarios/autoritzacio.php</file>
+<<<<<<< HEAD
+            <file>file:/opt/lampp/htdocs/ProjecteContactesM7/login-usuarios/registro.php</file>
+            <file>file:/opt/lampp/htdocs/ProjecteContactesM7/CSS/estilo-login.css</file>
+            <file>file:/opt/lampp/htdocs/ProjecteContactesM7/login-usuarios/eliminar_user.php</file>
+=======
+>>>>>>> 946da0cae0db9b061a36188384f7c10b1dd8c8c3
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/Contacto/NuevoContacto.php</file>
-            <file>file:/opt/lampp/htdocs/ProjecteContactesM7/README.md</file>
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/login-usuarios/login.php</file>
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/Contacto/delete.php</file>
+            <file>file:/opt/lampp/htdocs/ProjecteContactesM7/login-usuarios/registro.html</file>
+            <file>file:/opt/lampp/htdocs/ProjecteContactesM7/login-usuarios/seleccion_usuarios.php</file>
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/Contacto/editar.php</file>
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/Contacto/favorito.php</file>
+<<<<<<< HEAD
+            <file>file:/opt/lampp/htdocs/ProjecteContactesM7/Menu/header.php</file>
+=======
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/login-usuarios/conexion.php</file>
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/Menu/header.php</file>
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/Contacto/ListaContactos.php</file>
+>>>>>>> 946da0cae0db9b061a36188384f7c10b1dd8c8c3
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/Menu/menu.php</file>
+            <file>file:/opt/lampp/htdocs/ProjecteContactesM7/Contacto/ListaContactos.php</file>
             <file>file:/opt/lampp/htdocs/ProjecteContactesM7/login-usuarios/logout.php</file>
         </group>
     </open-files>
